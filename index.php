@@ -15,6 +15,8 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
   
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.32.4/dist/sweetalert2.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.32.4/dist/sweetalert2.js"></script>
 </head>
 <body>
     
@@ -88,7 +90,7 @@ $result = $con->ExecuteQuery($query);
        echo  "<td> $row[5]</td>";
        echo  "<td> $row[6]</td>";
        echo  "<td> <span onclick='eliminar($row[0])'>Eliminar </span></td>";
-       echo  "<td> Editar </td>";
+     
  			echo "</tr>";
 
  			
@@ -114,11 +116,17 @@ $con->Desconectar();
 
 
 function eliminar(id){
-
-  var txt;
-var r = confirm("Esta seguro que desea eliminar al trabajador?");
-if (r == true) {
-  $.ajax({
+  Swal({
+  title: 'Esta seguro que desea eliminar al trabajador?',
+  text: "Esto es permanente",
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Si'
+}).then((result) => {
+  if (result.value) {
+    $.ajax({
   type: "POST",
   url: "operadorEliminar.php",
   data: {
@@ -130,12 +138,14 @@ if (r == true) {
 location.href="index.php";
   }
 });
-} else {
-  
-}
+  }
+})
+ 
  
 
 }
+
+
       </script>
 
 
