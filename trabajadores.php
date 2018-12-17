@@ -7,35 +7,39 @@ private $user;
 private $password;
 private $database;
 private $conectando;
-private $nombre;
-private $apellido;
-private $rut;
-private $sueldobruto;
-private $afp;
-private $fonasa; 
-public   function __construct(){ 
 
+public   function __construct(){ 
+    require "credenciales.php";
+    $this->host=HOST;
+    $this->user=USER;
+    $this->password=PASSWORD;
+    $this->database=DATABASE;
+    $this->CrearLaConexion();
 
 }
   
 
 
-
+public function CrearLaConexion(){
+    $this->conectando = new mysqli($this->host, $this->user, $this->password, $this->database);
+     if($this->conectando->connect_errno) {
+      die("Error al conectarse a MySQL: ");
+     }
+    }
+    
 public static function agregar($nombre,$apellido,$rut,$sueldobruto,$afp,$fonasa,$liquido){
-    $conectar = new conexion();
-    $conectar->CrearLaConexion();
+
     $query="INSERT INTO trabajadores(id, nombre, apellido, rut,sueldobruto,afp,fonasa,liquido) VALUES (NULL,'$nombre','$apellido','$rut','$sueldobruto','$afp','$fonasa','$liquido')";
-
- 
-   
-   $ConfirmaGrabar=$conectar->ExecuteQuery($query);
-        
+    $this->conectando->ExecuteQuery($query);      
 }
 
-public function GetRows($resultado){
- return $resultado->fetch_row();
-}
-
+public function ExecuteQuery($sql){
+    $resultado = $this->conectando->query($sql);
+    return $resultado;
+   }
+   public function GetRows($resultado){
+    return $resultado->fetch_row();
+   }
 
 
 public function SetFreeResult($resultado){

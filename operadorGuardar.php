@@ -11,7 +11,14 @@ $liquido=$sueldobruto-$afp-$fonasa;
 
 
  $trabajador = new trabajadores();
- $trabajador->agregar($nombre,$apellido,$rut,$sueldobruto,$afp,$fonasa,$liquido);
+
+
+ $query="INSERT INTO trabajadores(id, nombre, apellido, rut,sueldobruto,afp,fonasa,liquido) VALUES (NULL,'$nombre','$apellido','$rut','$sueldobruto','$afp','$fonasa','$liquido')";
+ 
+ $trabajador->ExecuteQuery($query);
+
+ 
+
  echo 'true';
  
 ?>

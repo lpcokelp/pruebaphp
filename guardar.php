@@ -85,6 +85,13 @@ sueldobruto:sueldoBruto
   cache: false,
   success: function(data){
    console.log(data)
+
+
+$('#nombre').val('');
+$('#apellido').val('');
+$('#rut').val('');
+$('#sueldobruto').val('');
+alert("Trabajador Registrado!");
   }
 });
 

@@ -62,7 +62,7 @@
 <?php 
  
 require("conexion.php");
- $con = new conexion();
+ $con = new trabajadores();
  $con->CrearLaConexion();
  
 
