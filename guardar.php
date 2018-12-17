@@ -7,15 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tarea php</title>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
-<body>
-    
-</body>
-</html>
 
 <body>
 
@@ -27,10 +23,10 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                   <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                      <a class="nav-link" href="index.php">Listado <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="index.php">Listado</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="agregar.php">Agregar</a>
+                      <a class="nav-link" href="agregar.php" > <span class="sr-only">(current)</span>Agregar</a>
                     </li>
                   
                   </ul>
@@ -41,69 +37,60 @@
 
     <div class="row card">
      
-        <div class="col-md-12">
-            <table class="table">
+        <div class="col-md-4 offset-md-4">
+        <form onsubmit="guardar(nombre.value,apellido.value,rut.value,sueldobruto.value); return false">
+        <div class="form-group">
+    <h3 >Agregar Trabajador</h3>
 
-            <thead>
-
-            <tr>
-                <th>ID</th>
-                <th>Rut</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>SueldoBruto</th>
-                <th>AFP</th>
-                <th>Fonasa</th>
-                <th></th>
-            </tr>
-</thead>
-
-<tbody id="cuerpoTabla">
-<?php 
- 
-require("conexion.php");
- $con = new conexion();
- $con->CrearLaConexion();
- 
-
-
-//listar
-
-$query="SELECT * FROM trabajadores ";
-$result = $con->ExecuteQuery($query);
-	if($result)
-		{
- 			while($row=$con->GetRows($result))
- 			{
-        echo "<tr>";
-        echo  "<td> $row[0] </td>";
- 			echo  "<td> $row[1] </td>";
- 			echo  "<td> $row[2]</td>";
-       echo  "<td> $row[3]</td>";
-       echo  "<td> $row[4]</td>";
-       echo  "<td> $row[5]</td>";
-       echo  "<td> $row[6]</td>";
-       echo  "<td> Eliminar </td>";
-       echo  "<td> Editar </td>";
- 			echo "</tr>";
-
- 			
- 			 //echo " <td> <br> El usuario es:".$row[1]." ".$row[2]." ".$row[3];//
- 			}
-    	$con->SetFreeResult($result);
-    	
-    	}
-    	else
-    	{
-    	echo "<h3>Error generando la consulta</h3>";
-		}
-$con->Desconectar();
-?>
-</tbody>
-                
-</table> 
+  </div>
+  <div class="form-group">
+    <label for="nombre">Nombre</label>
+    <input type="text" class="form-control" id="nombre">
+  </div>
+  <div class="form-group">
+    <label for="nombre">Apellido</label>
+    <input type="text" class="form-control" id="apellido">
+  </div>
+  <div class="form-group">
+    <label for="nombre">Rut</label>
+    <input type="text" class="form-control" id="rut">
+  </div>
+  <div class="form-group">
+    <label for="nombre">Sueldo Bruto</label>
+    <input type="text" class="form-control" id="sueldobruto">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
         </div>
       </div>
 
 
 </body>
+
+<script>
+
+function guardar(nombre,apellido,rut,sueldoBruto){
+
+    $.ajax({
+  type: "POST",
+  url: "operadorGuardar.php",
+  data: {
+    nombre:nombre,
+apellido:apellido,
+rut:rut,
+sueldobruto:sueldoBruto
+
+
+  },
+  cache: false,
+  success: function(data){
+   console.log(data)
+  }
+});
+
+}
+</script>
+</html>
+
+
+

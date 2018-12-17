@@ -2,5 +2,5 @@
 define('HOST', 'localhost');
 define('USER', 'root');
 define('PASSWORD', '');
-define('DATABASE', 'pruebaphp');
+define('DATABASE', 'tareaphp');
 ?>
