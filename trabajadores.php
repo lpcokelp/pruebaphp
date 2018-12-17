@@ -1,5 +1,5 @@
 <?php 
-require "conexion.php";
+
 class trabajadores{
 // Definicion de atributos
 private $host;
@@ -27,11 +27,7 @@ public function CrearLaConexion(){
      }
     }
     
-public static function agregar($nombre,$apellido,$rut,$sueldobruto,$afp,$fonasa,$liquido){
 
-    $query="INSERT INTO trabajadores(id, nombre, apellido, rut,sueldobruto,afp,fonasa,liquido) VALUES (NULL,'$nombre','$apellido','$rut','$sueldobruto','$afp','$fonasa','$liquido')";
-    $this->conectando->ExecuteQuery($query);      
-}
 
 public function ExecuteQuery($sql){
     $resultado = $this->conectando->query($sql);

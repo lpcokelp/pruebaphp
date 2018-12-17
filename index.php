@@ -60,6 +60,7 @@
                 <th>SueldoBruto</th>
                 <th>AFP</th>
                 <th>Fonasa</th>
+                <th>Liquido</th>
                 <th></th>
             </tr>
 </thead>
@@ -89,6 +90,7 @@ $result = $con->ExecuteQuery($query);
        echo  "<td> $row[4]</td>";
        echo  "<td> $row[5]</td>";
        echo  "<td> $row[6]</td>";
+       echo  "<td> $row[7]</td>";
        echo  "<td> <span onclick='eliminar($row[0])'>Eliminar </span></td>";
      
  			echo "</tr>";

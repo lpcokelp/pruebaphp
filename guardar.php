@@ -12,7 +12,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.32.4/dist/sweetalert2.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@7.32.4/dist/sweetalert2.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.32.4/dist/sweetalert2.js"></script>
 </head>
 
 <body>
@@ -47,19 +47,19 @@
   </div>
   <div class="form-group">
     <label for="nombre">Nombre</label>
-    <input type="text" class="form-control" id="nombre">
+    <input type="text" class="form-control" id="nombre" required  maxlength="30">
   </div>
   <div class="form-group">
     <label for="nombre">Apellido</label>
-    <input type="text" class="form-control" id="apellido">
+    <input type="text" class="form-control" id="apellido" required maxlength="30">
   </div>
   <div class="form-group">
     <label for="nombre">Rut</label>
-    <input type="text" class="form-control" id="rut">
+    <input type="text" class="form-control" id="rut" required minlength="12" maxlength="13" >
   </div>
   <div class="form-group">
     <label for="nombre">Sueldo Bruto</label>
-    <input type="text" class="form-control" id="sueldobruto">
+    <input type="text" class="form-control" id="sueldobruto" required min="288000">
   </div>
   <button type="submit" class="btn btn-primary">Registrar</button>
   <a type="button" class="btn btn-danger" href="index.php">Cancelar</a>
@@ -89,12 +89,29 @@ sueldobruto:sueldoBruto
   success: function(data){
    console.log(data)
 
-   Swal(
-      'Trabajador registrado!',
-      'Finalizado',
-      timer: 1000,
-      'success'
-    )
+   Swal({
+  title: 'Trabajador Registrado!',
+  html: '',
+  timer: 1000,
+  onBeforeOpen: () => {
+    Swal.showLoading()
+    timerInterval = setInterval(() => {
+    
+     
+    }, 100)
+  },
+  onClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  if (
+    // Read more about handling dismissals
+    result.dismiss === Swal.DismissReason.timer
+  ) {
+
+  }
+})
+
 $('#nombre').val('');
 $('#apellido').val('');
 $('#rut').val('');
