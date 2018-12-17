@@ -22,11 +22,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarText">
                   <ul class="navbar-nav mr-auto">
-                    <li class="nav-item ">
+                    <li class="nav-item active">
                       <a class="nav-link" href="index.php">Listado</a>
                     </li>
-                    <li class="nav-item active">
-                      <a class="nav-link" href="guardar.php" > <span class="sr-only">(current)</span>Agregar</a>
+                    <li class="nav-item">
+                      <a class="nav-link" href="agregar.php" > <span class="sr-only">(current)</span>Agregar</a>
                     </li>
                   
                   </ul>
@@ -35,7 +35,7 @@
                 </div>
               </nav>
 
-    <div class="row ">
+    <div class="row card">
      
         <div class="col-md-4 offset-md-4">
         <form onsubmit="guardar(nombre.value,apellido.value,rut.value,sueldobruto.value); return false">
@@ -59,8 +59,7 @@
     <label for="nombre">Sueldo Bruto</label>
     <input type="text" class="form-control" id="sueldobruto">
   </div>
-  <button type="submit" class="btn btn-primary">Registrar</button>
-  <a type="button" class="btn btn-danger" href="index.php">Cancelar</a>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
         </div>
       </div>
